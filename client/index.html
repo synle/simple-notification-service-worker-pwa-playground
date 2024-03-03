@@ -1,0 +1,31 @@
+<!-- html -->
+<head>
+  <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+  <h1>index.html client app</h1>
+  <script>
+    var targetRegistration;
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function (registration) {
+            targetRegistration= registration
+            console.log('Service Worker registered with scope:', registration.scope);
+          }, function (err) {
+            console.error('Service Worker registration failed:', err);
+          });
+      });
+    }
+
+    // manually trigger
+//    targetRegistration.sync.register('data-sync')
+//        .then(function () {
+//          console.log('Sync event registered');
+//        })
+//        .catch(function (err) {
+//          console.error('Sync event registration failed:', err);
+//        });
+  </script>
+
+</body>
